@@ -6,7 +6,8 @@
 #include <map>
 
 
-enum class Type { number, oprator };	// Either a number(literal or variable) of an operator
+enum class Type {number, oprator , strng};	// Either a number(literal or variable) of an operator
+enum class Trig {rsin, rcos, rtan, rasin, racos, ratan, mlog, mlog2, mlog10};
 
 class Token
 {
@@ -14,8 +15,13 @@ class Token
 	{
 		double realVal;
 		char charVal;
+		Trig strVal;
 	};
 	Value val;
+	
+	std::map<std::string, Trig> varList {{"cos", Trig::rcos}, {"sin", Trig::rsin},
+	{"tan", Trig::rtan}, {"acos", Trig::racos}, {"asin", Trig::rasin},
+	{"atan", Trig::ratan}, {"log", Trig::mlog}, {"log2", Trig::mlog2}, {"log10", Trig::mlog10}};
 
 	Type typ;
 
@@ -28,5 +34,4 @@ public:
 	Value getValue(){ return val; }
 };
 
-void add_to_var(std::string, double);				// insert variable to varList
 void takeIn(std::vector<Token>&, std::istream&);			// Take in input and convert to Tokens

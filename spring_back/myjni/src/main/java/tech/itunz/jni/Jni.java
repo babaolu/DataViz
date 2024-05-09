@@ -24,6 +24,8 @@ public class Jni {
         {
             double effectiveVal = stPoint + (i * interv);
             String eval = formula.replace("x", String.valueOf(effectiveVal));
+            eval = eval.replace("Pi", String.valueOf(Math.PI));
+            eval = eval.replace("e", String.valueOf(Math.exp(1)));
             HashMap<String, Double> point = new HashMap<String, Double>();
             point.put("x", Double.valueOf(effectiveVal));
             point.put("y", evaluate(eval));

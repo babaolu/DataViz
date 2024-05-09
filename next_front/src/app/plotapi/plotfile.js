@@ -138,7 +138,7 @@ export default function App({data}) {
 			    },
                             marks: [
                                 Plot.frame(),
-                                Plot.dot(data[0], {x: data[1], y: data[2]})
+                                Plot.areaY(data[0], {x: data[1], y: data[2]})
                             ]
                         }}/>
                 )
