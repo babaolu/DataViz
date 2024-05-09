@@ -138,7 +138,7 @@ export default function App({data}) {
 			    },
                             marks: [
                                 Plot.frame(),
-                                Plot.dot(data, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+                                Plot.dot(data[0], {x: data[1], y: data[2]})
                             ]
                         }}/>
                 )

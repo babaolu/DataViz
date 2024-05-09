@@ -27,7 +27,7 @@ function Header() {
       <nav><Link href="/">Home</Link></nav>
       <nav><Link href="/dashboard">Dashboard</Link></nav>
       <h1 id="appName"><Link href="/">DataViz</Link></h1>
-      <nav>Login</nav>
+      <nav id="login">Login</nav>
     </header>
   );
 }

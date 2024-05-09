@@ -1,0 +1,5 @@
+sudo apt install node
+
+npx create-next-app@latest
+npm install @observablehq/plot
+npm install papaparse

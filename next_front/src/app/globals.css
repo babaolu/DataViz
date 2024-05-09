@@ -11,8 +11,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 200, 200, 200;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 148, 102, 62;
+    --background-end-rgb: 90, 95, 95;
   }
 }
 
@@ -24,6 +24,42 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  background-repeat: no-repeat;
+  background-size: 100% 100vh;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  height: 10vh;
+  background-color: rgb(50, 50, 50);
+}
+
+nav {
+  position: relative;
+  top: 60%;
+  margin: 0.7%;
+  font: bold 1.5em "Open Sans", sans-serif;
+  color: rgb(175, 175, 175);
+}
+
+#appName {
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  transform: translate(-50%);
+  font: Italic bold 3em "Brush Script Std", cursive;
+  color: rgb(102, 173, 109);
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  position: absolute;
+  bottom: 0%;
+  background-color: rgb(20, 20, 20);
+  width: 100%;
+  height: 5vh;
 }
 
 @layer utilities {
