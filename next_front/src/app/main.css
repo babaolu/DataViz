@@ -64,6 +64,10 @@ main {
   border-radius: 2vh;
 }
 
+.describe h2:hover {
+  background-color: rgb(80, 80, 80);
+}
+
 .coverImage {
   position: absolute;
   padding: 4vh;
