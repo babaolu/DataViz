@@ -14,7 +14,7 @@ import tech.itunz.jni.Jni;
 @RestController
 public class HomeController {
 
-    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.HEAD, RequestMethod.OPTIONS}, originPatterns = "http://localhost:3000")
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.HEAD, RequestMethod.OPTIONS}, originPatterns = "http://*:3000")
     @ResponseBody
     @PostMapping(path = "gen_pdata")
     public String generate(@RequestBody FormulaData data)
