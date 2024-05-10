@@ -9,12 +9,13 @@ input {
 
 #view-pane {
   display: flex;
+  justify-content: flex-start;
 }
 
 #selector {
   position: relative;
-  top: 5%;
-  left: 5%;
+  bottom: 20vh;
+  right: 15vh;
   background-color: rgb(50, 50, 50);
   border-radius: 1.5vh;
   max-width: 15vh;
