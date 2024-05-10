@@ -13,10 +13,10 @@ main {
   display: table-row;
   background-color: rgba(255, 255, 255, 0.3);
   height: 100%;
-  width: 25%;
+  width: 40vh;
   right: 0%;
 }
 
-input {
-  background-color: rgb(50, 50, 50);
+button {
+  background-color: rgb(75, 75, 75);
 }

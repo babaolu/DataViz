@@ -6,12 +6,17 @@ import Image from 'next/image';
 import App from '@/app/plotapi/plotfile';
 import ctoj from '@/app/utilapi/csvtojson';
 import "../main.css";
+import "./board.css";
 
 export default function Dashboard() {
   const [data, setData] = useState();
   const [col, setCol] = useState(null);
   const [xaxis, setXaxis] = useState(null);
   const [yaxis, setYaxis] = useState(null);
+  const [dot, setDot] = useState(null);
+  const [line, setLine] = useState(null);
+  const [area, setArea] = useState(null);
+  const [bar, setBar] = useState(null);
 
   const submitFile = (event) => {
     event.preventDefault(); 
@@ -63,12 +68,38 @@ export default function Dashboard() {
       console.error('Error uploading formula:', error);
     }
   };
+  console.log(dot, line, area, bar)
 
 
   return (
     <main>
       <div id="view-pane">
-        { col ? <App data={[col, xaxis, yaxis]} /> : '' }
+        { col ? <App data={[col, xaxis, yaxis, [dot, line, area, bar]]} /> : '' }
+	<div id="selector">
+	<h2>Plot Style</h2>
+        <ul className="plotstyle">
+	  <li>
+            <label htmlFor="dot">Dot Plot</label>
+	    <input type="checkbox" id="dot"
+	    onChange={(event) => {event.target.checked ? setDot("dot"): setDot(null)}}></input>
+	  </li>
+	  <li>
+            <label htmlFor="line">Line Plot</label>
+	    <input type="checkbox" id="line"
+	    onChange={(event) => {event.target.checked ? setLine("line"): setLine(null)}}></input>
+	  </li>
+	  <li>
+            <label htmlFor="area">Area Plot</label>
+	    <input type="checkbox" id="area"
+	    onChange={(event) => {event.target.checked ? setArea("area"): setArea(null)}}></input>
+	  </li>
+	  <li>
+            <label htmlFor="bar">Bar chart</label>
+	    <input type="checkbox" id="bar"
+	    onChange={(event) => {event.target.checked ? setBar("bar"): setBar(null)}}></input>
+	  </li>
+	</ul>
+	</div>
       </div>
       <section id="input-section">
         <form method="post" encType="multipart/form-data"

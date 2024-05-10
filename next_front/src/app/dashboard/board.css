@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+  background-color: rgb(50, 50, 50);
+  margin: 0.5vh;
+}
+
+#view-pane {
+  display: flex;
+}
+
+#selector {
+  position: relative;
+  top: 5%;
+  left: 5%;
+  background-color: rgb(50, 50, 50);
+  border-radius: 1.5vh;
+  max-width: 15vh;
+  height: 20vh;
+  padding: 0.5vh;
+}
+
+#selector h2 {
+  font: bold italic 1.5em "Open Sans", sans-serif;
+}
+.plotstyle {
+  visibility: hidden;
+}
+
+#selector:hover .plotstyle {
+ visibility: visible;
+}
+
+button {
+  background-color: rgb(75, 75, 75);
+  border-radius: 0.5vh;
+  margin-left: 1vh;
+  padding: 0.2vh;
+}

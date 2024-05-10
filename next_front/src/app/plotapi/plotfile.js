@@ -128,6 +128,13 @@ function PlotFigure({options}) {
 }
 
 export default function App({data}) {
+  const plotStyles = {
+    area:  Plot.areaY(data[0], {x: data[1], y: data[2]}),
+    bar:  Plot.barY(data[0], {x: data[1], y: data[2]}),
+    dot:  Plot.dot(data[0], {x: data[1], y: data[2]}),
+    line: Plot.lineY(data[0], {x: data[1], y: data[2]})
+  };
+  const collectedPlots = data[3].map((x) => plotStyles[x]);
                 return (
                         <PlotFigure
                         options = {{
@@ -138,8 +145,7 @@ export default function App({data}) {
 			    },
                             marks: [
                                 Plot.frame(),
-                                Plot.dot(data[0], {x: data[1], y: data[2]})
-                            ]
+                            ...collectedPlots]
                         }}/>
-                )
+                );
 }            
