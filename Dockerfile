@@ -47,7 +47,6 @@ source $HOME/.nvm/nvm.sh
 npm install next@latest react@latest react-dom@latest -y
 npm install @observablehq/plot -y
 npm run build
-npm run start
 EOF
 
 EXPOSE 8080/tcp 80/tcp 3000/tcp
