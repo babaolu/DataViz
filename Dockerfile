@@ -5,7 +5,7 @@ SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 apt-get update
 apt-get upgrade -y
-apt-get install -y build-essential openjdk-21-jdk-headless tar wget
+apt-get install -y build-essential openjdk-21-jdk-headless tar wget curl
 
 # Setting up apache tomcat server
 wget -c https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.23/bin/apache-tomcat-10.1.23.tar.gz
@@ -16,6 +16,8 @@ chmod +x /opt/tomcat/updated/bin/*.sh
 
 # installs NVM (Node Version Manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+source $HOME/.nvm/nvm.sh
 
 # download and install Node.js
 nvm install 20
@@ -41,6 +43,7 @@ EOF
 
 WORKDIR /DataViz/next_front
 RUN <<EOF
+source $HOME/.nvm/nvm.sh
 npm install next@latest react@latest react-dom@latest -y
 npm install @observablehq/plot -y
 npm run build
