@@ -51,4 +51,4 @@ EOF
 
 EXPOSE 8080/tcp 80/tcp 3000/tcp
 
-ENTRYPOINT ["source", "/DataViz/startup.sh"]
+ENTRYPOINT ["/bin/bash", "-c", "source /DataViz/startup.sh"]
