@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class Jni {
 
     ArrayList<HashMap<String, Double>> maplist;
-    public native double evaluate(String form);
+    public native double evaluate(String form) throws IllegalArgumentException;
 
     static {
         System.loadLibrary("calc");
@@ -28,7 +28,13 @@ public class Jni {
             eval = eval.replace("e", String.valueOf(Math.exp(1)));
             HashMap<String, Double> point = new HashMap<String, Double>();
             point.put("x", Double.valueOf(effectiveVal));
-            point.put("y", evaluate(eval));
+            try
+            {
+                point.put("y", evaluate(eval));
+            }
+            catch (IllegalArgumentException ex) {
+                return ex.getMessage();
+            }
             maplist.add(point);
         }
         try {
@@ -43,7 +49,7 @@ public class Jni {
 
     public static void main(String[] args) {
         Jni mainObj = new Jni();
-        String result = mainObj.generate("x*x-2*x+1", -200, 400, 1);
+        String result = mainObj.generate("cosx*x-2*x+1", -200, 400, 1);
         System.out.println(result);
     }
 }
