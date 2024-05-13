@@ -47,7 +47,8 @@ export default function Dashboard() {
       const formObj = {};
       formData.forEach((value, key) => formObj[key] = value);
 
-      const response = await fetch("http://localhost:8080/backspring/gen_pdata", {
+      const furl = process.env.NEXT_PUBLIC_DATAVIZ_URL;
+      const response = await fetch("http://" + furl + ":8080/backspring/gen_pdata", {
         method: 'POST',
 	mode: "cors",
 	headers: {

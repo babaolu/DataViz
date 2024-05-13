@@ -41,12 +41,15 @@ mv setenv.sh /opt/tomcat/updated/bin/
 cp data_generator/build/libs/backspring.war /opt/tomcat/updated/webapps/
 EOF
 
+ENV NEXT_PUBLIC_DATAVIZ_URL=web-02.itunz.tech
+
 WORKDIR /DataViz/next_front
 RUN <<EOF
 source $HOME/.nvm/nvm.sh
 npm install next@latest react@latest react-dom@latest -y
 npm install @observablehq/plot -y
 npm run build
+npm i sharp
 EOF
 
 EXPOSE 8080/tcp 80/tcp 3000/tcp
