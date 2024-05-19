@@ -14,6 +14,13 @@ import tech.itunz.jni.Jni;
 @RestController
 public class HomeController {
 
+    /**
+     * Handler for the URI - gen_data in form of a post request. It receives the
+     * form data containing the formula string to evaluate and other information
+     * to determine the number of values to generate
+     * @param data FormulaData containing the needed information
+     * @return Jsonified string of array of input-output pairs
+     */
     @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.HEAD, RequestMethod.OPTIONS}, originPatterns = "http://*:3000")
     @ResponseBody
     @PostMapping(path = "gen_pdata")
@@ -27,7 +34,11 @@ public class HomeController {
         String result = mainObj.generate(formula, stPoint, smpSize, interv);
         return result;
     }
-  
+ 
+    /**
+     * Test function to check that the program is running as expected
+     * @return Jsonified string of array of input-output pairs
+     */
     @CrossOrigin
     @ResponseBody
     @GetMapping(path = "gen_data")

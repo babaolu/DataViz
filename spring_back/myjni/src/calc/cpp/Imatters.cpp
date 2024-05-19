@@ -1,6 +1,13 @@
 #include "Imatters.h"
 #include "ErrorHandle.h"
 
+/**
+ * A constructor for Token with string as input
+ * 
+ * This constructor attempts to create a Token out of a string if that string
+ * is a recognized keyword. If the string is not recognized, it throws and
+ * expression error
+*/
 Token::Token(std::string s)
 	: typ{ Type::strng }
 {
@@ -11,6 +18,12 @@ Token::Token(std::string s)
 		expression_error("Nonexisting identifier: '" + s + "'");
 }
 
+/**
+ * This functions collects characters from the input stream ist and converts
+ * them into Tokens based on their property which is then stored Token vector
+ * @param tokenVec Token vector
+ * @param ist Input stream
+*/
 void takeIn(std::vector<Token>& tokenVec, std::istream& ist)
 {
 	char charVal;

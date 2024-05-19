@@ -1,9 +1,14 @@
 #include "ProcessComp.h"
 
-
+/**
+ * Handles additions and subtractions in the expression
+ * @param tokVec Vector of Tokens parse
+ * @param i index used to parse and keep track of evaluated tokens
+*/
 double add_sub(std::vector<Token>& tokVec, unsigned int& i)
 {
-	double val = div_mult(tokVec, i);
+	double val = div_mult(tokVec, i);  // Giving higher priority to division
+	// and multiplication
 	static int brack = 0;
 
 	while (i < (tokVec.size() - 1))		 // excluding the terminator (;)
@@ -25,9 +30,14 @@ double add_sub(std::vector<Token>& tokVec, unsigned int& i)
 	return val;
 }
 
+/**
+ * Handles divisions and multiplications in the expression
+ * @param tokVec Vector of Tokens parse
+ * @param i index used to parse and keep track of evaluated tokens
+*/
 double div_mult(std::vector<Token>& tokVec, unsigned int& i)
 {
-	double val = expo(tokVec, i);
+	double val = expo(tokVec, i);  // Given higher priority to exponents
 
 	while (i < (tokVec.size() - 1))	// excluding the terminator (;)
 	{
@@ -58,9 +68,15 @@ double div_mult(std::vector<Token>& tokVec, unsigned int& i)
 	return val;
 }
 
+/**
+ * Handles exponents in the expression
+ * @param tokVec Vector of Tokens parse
+ * @param i index used to parse and keep track of evaluated tokens
+*/
 double expo(std::vector<Token>& tokVec, unsigned int& i)
 {
-	double val = primary(tokVec, i);
+	double val = primary(tokVec, i); // Given priority to expressions
+	//involving brackets and the numbers themselves
 
 	while (i < (tokVec.size() - 1))	// excluding the terminator (;)
 	{
@@ -78,6 +94,11 @@ double expo(std::vector<Token>& tokVec, unsigned int& i)
 	return val;
 }
 
+/**
+ * Handles brackets and functions that enclose with brackets in the expression
+ * @param tokVec Vector of Tokens parse
+ * @param i index used to parse and keep track of evaluated tokens
+*/
 double primary(std::vector<Token>& tokVec, unsigned int& i)
 {
 	double val;

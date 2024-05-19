@@ -11,12 +11,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class Jni {
 
     ArrayList<HashMap<String, Double>> maplist;
+    
+    /**
+     * Native method, using jni, that evaluates an arithmetic expression string
+     * @param form The arithmetic expression to evaluate
+     * @return Returns the evaluated value
+     * @throws IllegalArgumentException
+     */
     public native double evaluate(String form) throws IllegalArgumentException;
 
     static {
         System.loadLibrary("calc");
     }
 
+    /**
+     * This method generates an Array of different evaluations of the provided formula
+     * based on the intended size of the array and the intervals between input values to
+     * the formula
+     * @param formula Provided formula
+     * @param stPoint Starting point value of the input to the formula
+     * @param smpSize Intended size of the Array
+     * @param interv Interval between input values to the formula
+     * @return Returns a jsonified string of the array of input-evaluated value pairs
+     */
     public String generate(String formula, double stPoint, double smpSize, double interv) {
         maplist = new ArrayList<HashMap<String, Double>>();
         String result = "";
@@ -47,9 +64,14 @@ public class Jni {
         return result;
     }
 
+    /**
+     * main function to test that this module works as expected: to be later
+     * moved into unittests
+     * @param args
+     */
     public static void main(String[] args) {
         Jni mainObj = new Jni();
-        String result = mainObj.generate("cosx*x-2*x+1", -200, 400, 1);
+        String result = mainObj.generate("cos(x)*x^2-2*x+1", -200, 400, 1);
         System.out.println(result);
     }
 }

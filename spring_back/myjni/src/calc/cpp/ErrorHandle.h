@@ -2,11 +2,17 @@
 
 #include "IOmatters.h"
 
+/**
+ * A class used for throwing expression errors
+*/
 struct BadExpression
 {
 	std::string message;
 };
 
+/**
+ * A class used for throwing exceptions errors
+*/
 struct BracketCheck : BadExpression
 {
 	double val;

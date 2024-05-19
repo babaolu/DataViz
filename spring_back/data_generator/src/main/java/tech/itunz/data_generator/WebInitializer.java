@@ -8,6 +8,9 @@ AbstractAnnotationConfigDispatcherServletInitializer;
 import jakarta.servlet.Filter;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Spring MVC initializer class
+ */
 public class WebInitializer
 extends AbstractAnnotationConfigDispatcherServletInitializer
 {

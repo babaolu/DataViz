@@ -5,13 +5,22 @@
 #include <vector>
 #include <map>
 
-
+/**
+ * Used for categorizing tokens in types
+*/
 enum class Type {number, oprator , strng};	// Either a number(literal or variable) of an operator
+
+/**
+ * Constants used to represent trigonometric and logarithmic tokens
+*/
 enum class Trig {rsin, rcos, rtan, rasin, racos, ratan, mlog, mlog2, mlog10};
 
+/**
+ * Token definition
+*/
 class Token
 {
-	union Value					// Either a number or an operator
+	union Value  // Either a number or an operator or a trig/log constant
 	{
 		double realVal;
 		char charVal;
