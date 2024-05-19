@@ -4,7 +4,8 @@ export default function ctoj(csv_array) {
     .map((val) => {
       const obj = {};
       for (let i = 0; i < val.length; i++) {
-        obj[csv_array[0][i]] = parseFloat(val[i]);
+        const floatValue = parseFloat(val[i]);
+        obj[csv_array[0][i]] = floatValue ? floatValue : val[i];
       }
       return obj;
     });

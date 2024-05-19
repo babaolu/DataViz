@@ -1,6 +1,37 @@
 import React from 'react';
 import * as Plot from "@observablehq/plot";
 
+class Document {
+  constructor() {
+    this.documentElement = new Element(this, "html");
+  }
+  createElementNS(namespace, tagName) {
+    return new Element(this, tagName);
+  }
+              
+  createElement(tagName) {
+    return new Element(this, tagName);
+  }
+              
+  createTextNode(value) {
+    return new TextNode(this, value);
+  }
+              
+  querySelector() {
+    return null;
+  }
+              
+  querySelectorAll() {
+    return [];
+  }
+}
+
+class Style {
+  static empty = new Style();
+  setProperty() {}
+  removeProperty() {}
+}
+
 class Element {
   constructor(ownerDocument, tagName) {
     this.ownerDocument = ownerDocument;
@@ -98,54 +129,33 @@ class TextNode {
     return this.nodeValue;
   }
 }
-            class Document {
-              constructor() {
-                this.documentElement = new Element(this, "html");
-              }
-              createElementNS(namespace, tagName) {
-                return new Element(this, tagName);
-              }
-              
-              createElement(tagName) {
-                return new Element(this, tagName);
-              }
-              
-              createTextNode(value) {
-                return new TextNode(this, value);
-              }
-              
-              querySelector() {
-                return null;
-              }
-              
-              querySelectorAll() {
-                return [];
-              }
-            }
-            
+                        
 function PlotFigure({options}) {
   return Plot.plot({ ...options, document: new Document() }).toHyperScript();
 }
 
 export default function App({data}) {
-  const plotStyles = {
-    area:  Plot.areaY(data[0], {x: data[1], y: data[2]}),
-    bar:  Plot.barY(data[0], {x: data[1], y: data[2]}),
-    dot:  Plot.dot(data[0], {x: data[1], y: data[2]}),
-    line: Plot.lineY(data[0], {x: data[1], y: data[2]})
+  const plotValues = {x: data[1], y: data[2]};
+  const plotOptions = {grid: true};
+  if (data[4]) {  // Setting properties only if the category is specified
+    plotValues["stroke"] = data[4];
+    plotOptions["color"] = {legend: true};
+  }
+
+  const plotStyles = (data[1]) ? {  // Saving plot or text graph
+    area:  Plot.areaY(data[0], plotValues),
+    bar:  Plot.barY(data[0], plotValues),
+    dot:  Plot.dot(data[0], plotValues),
+    line: Plot.lineY(data[0], plotValues)
+  } : {
+    text: Plot.text([data[0]], {frameAnchor: "middle"})
   };
-  const collectedPlots = data[3].map((x) => plotStyles[x]);
-                return (
-                        <PlotFigure
-                        options = {{
-			    grid: true,
-			    color: {
-			      type: "diverging",
-			      scheme: "BuRd"
-			    },
-                            marks: [
-                                Plot.frame(),
-                            ...collectedPlots]
-                        }}/>
-                );
+ 
+  // Isolating the selected plotstyles
+  const collectedPlots = (data[1]) ? data[3].map((x) => plotStyles[x]): [plotStyles["text"]];
+  plotOptions["marks"] = [Plot.frame(), ...collectedPlots];
+  return (
+    <PlotFigure
+      options = {plotOptions}/>
+  );
 }            

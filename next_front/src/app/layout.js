@@ -9,6 +9,9 @@ export const metadata = {
   description: "Vizualizing datasets",
 };
 
+/**
+*  Specifies a uniform layout throughout all pages
+*/
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -21,6 +24,9 @@ export default function RootLayout({ children }) {
   );
 }
 
+/**
+* Specifies the header layout for all pages
+*/
 function Header() {
   return (
     <header>
@@ -32,6 +38,9 @@ function Header() {
   );
 }
 
+/**
+* Specifies the footer layout for all pages
+*/
 function Footer() {
   return (
     <footer>

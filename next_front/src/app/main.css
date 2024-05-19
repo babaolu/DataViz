@@ -5,10 +5,9 @@
 main {
   position: absolute;
   display: flex;
-  width: 100%;
-  height: 85%;
+  width: 100vw;
+  height: 85vh;
   overflow: "hidden";
-  justify-content: center;
   align-items: center;
 }
 
@@ -31,7 +30,7 @@ main {
   position: absolute;
   font: bold 3.2em sans-serif;
   top: 10vh;
-  left: 5vh;
+  left: 5vw;
 }
 
 .describe h3 {
@@ -39,7 +38,7 @@ main {
   font: bold 3em sans-serif;
   top: 20vh;
   transform: translate(-50%);
-  left: 50vh;
+  left: 30vw;
   color: rgb(15, 155, 240);
 }
 
@@ -48,7 +47,7 @@ main {
   font: bold italic 2em sans-serif;
   top: 25vh;
   transform: translate(-50%);
-  left: 50vh;
+  left: 40vw;
   color: rgb(165, 240, 15);
 }
 
@@ -57,7 +56,7 @@ main {
   font: bold italic 2.5em sans-serif;
   top: 40vh;
   transform: translate(-50%);
-  left: 35vh;
+  left: 45vw;
   color: rgb(165, 240, 15);
   background-color: rgb(65, 65, 75);
   padding: 3vh;
@@ -72,7 +71,7 @@ main {
   position: absolute;
   padding: 4vh;
   margin: 0;
-  right: 5vh;
+  right: 5vw;
   bottom: 15vh;
   background-color: rgb(70, 70, 70);
 }
@@ -81,8 +80,8 @@ main {
   position: absolute;
   display: table-row;
   background-color: rgba(255, 255, 255, 0.3);
-  height: 100%;
-  width: 40vh;
+  height: 85vh;
+  width: 25vw;
   right: 0%;
 }
 

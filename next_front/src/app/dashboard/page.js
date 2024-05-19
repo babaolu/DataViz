@@ -17,28 +17,50 @@ export default function Dashboard() {
   const [line, setLine] = useState(null);
   const [area, setArea] = useState(null);
   const [bar, setBar] = useState(null);
+  const [category, setCategory] = useState(null);
 
+  const handleCategory = (event) => {
+      let found = null;
+      if (col)
+        for (const variable of Object.keys(col[0])) {
+          if (variable === event.target.value) {
+	    console.log(variable);
+            found = event.target.value;
+	  }
+        }
+      setCategory(found);
+  }
+
+  /**
+  *  Handles the event that a file is being submitted
+  */
   const submitFile = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     const reader = new FileReader();
+    let jsonData;
     reader.readAsText(data);
     reader.onload = () => {
-      if (data.type === 'text/csv')
+      if (data.type === 'text/csv')  // converts csv file to json before saving to state
       {
         const { data: cval, errors } = Papa.parse(reader.result);
 	if (errors.length === 0)
-	  setCol(ctoj(cval));
+	  jsonData = ctoj(cval);
       } else
-        setCol(JSON.parse(reader.result));
+	jsonData = JSON.parse(reader.result);
+      setCol(jsonData);
 
       if (!xaxis)
-        setXaxis(Object.keys(JSON.parse(reader.result)[0])[0])
+        setXaxis(Object.keys(jsonData[0])[0]);
       if (!yaxis)
-        setYaxis(Object.keys(JSON.parse(reader.result)[0])[1])
+        setYaxis(Object.keys(jsonData[0])[1]);
       console.log(data.type, col);
     };
+    
   };
 
+  /**
+  *  Handles the event that a formula is being submitted
+  */
   async function submitFormula(event) {
     event.preventDefault();
 
@@ -57,16 +79,18 @@ export default function Dashboard() {
 	},
         body: JSON.stringify(formObj),
       });
-     // const response = await fetch("http://127.0.0.1:8080/First-spring/gen_data");
 
       const result = await response.json();
       setCol(result);
       console.log(result);
       setXaxis(Object.keys(result[0])[0]);
       setYaxis(Object.keys(result[0])[1]);
+      setCategory(null);
       // Handle response if needed
     } catch (error) {
-      console.error('Error uploading formula:', error);
+      setCol(error.message);
+      setXaxis(null);
+      setYaxis(null);
     }
   };
   console.log(dot, line, area, bar)
@@ -75,7 +99,7 @@ export default function Dashboard() {
   return (
     <main>
       <div id="view-pane">
-        { col ? <App data={[col, xaxis, yaxis, [dot, line, area, bar]]} /> : '' }
+        { col ? <App data={[col, xaxis, yaxis, [dot, line, area, bar], category]} /> : '' }
 	<div id="selector">
 	<h2>Plot Style</h2>
         <ul className="plotstyle">
@@ -116,6 +140,10 @@ export default function Dashboard() {
           <label htmlFor="y">Y-axis label</label>
           <input id="y" type="text" name="y-legend"
 	    onChange={(event) => setYaxis(event.target.value)}/>
+	  <br />
+          <label htmlFor="category">Categorizer</label>
+          <input id="category" type="text" name="category-spec"
+	    onChange={handleCategory}/>
 	  <br />
           <button type="submit">Plot File</button>
         </form>

@@ -3,6 +3,9 @@ import "./main.css";
 import Link from "next/link";
 import frontCover from "/public/images/Cover1.jpg";
 
+/**
+*  Displays the content of the Home page
+*/
 export default function Home() {
   return (
     <main>
