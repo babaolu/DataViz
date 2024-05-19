@@ -1,0 +1,41 @@
+FROM ubuntu:latest
+
+SHELL ["/bin/bash", "-c"]
+
+RUN <<EOF
+apt-get update
+apt-get upgrade -y
+apt-get install -y curl
+
+# installs NVM (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+source $HOME/.nvm/nvm.sh
+
+# download and install Node.js
+nvm install 20
+
+# verifies the right Node.js version is in the environment
+node -v # should print `v20.13.1`
+
+# verifies the right NPM version is in the environment
+npm -v # should print `10.5.2`
+
+EOF
+
+COPY next_front /DataViz/
+
+ENV NEXT_PUBLIC_DATAVIZ_URL=web-02.itunz.tech
+
+WORKDIR /DataViz/next_front
+RUN <<EOF
+source $HOME/.nvm/nvm.sh
+npm install next@latest react@latest react-dom@latest -y
+npm install @observablehq/plot -y
+npm run build
+npm i sharp
+EOF
+
+EXPOSE 8080/tcp 80/tcp 3000/tcp
+
+ENTRYPOINT ["/bin/bash", "-c", "source /DataViz/next_front/startup.sh"]
