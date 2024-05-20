@@ -27,7 +27,7 @@ COPY next_front /DataViz/
 
 ENV NEXT_PUBLIC_DATAVIZ_URL=web-02.itunz.tech
 
-WORKDIR /DataViz/next_front
+WORKDIR /DataViz/
 RUN <<EOF
 source $HOME/.nvm/nvm.sh
 npm install next@latest react@latest react-dom@latest -y
@@ -38,4 +38,4 @@ EOF
 
 EXPOSE 8080/tcp 80/tcp 3000/tcp
 
-ENTRYPOINT ["/bin/bash", "-c", "source /DataViz/next_front/startup.sh"]
+ENTRYPOINT ["/bin/bash", "-c", "source /DataViz/startup.sh"]

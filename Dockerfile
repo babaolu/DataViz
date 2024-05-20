@@ -8,10 +8,10 @@ apt-get upgrade -y
 apt-get install -y build-essential openjdk-21-jdk-headless tar wget curl
 
 # Setting up apache tomcat server
-wget -c https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.23/bin/apache-tomcat-10.1.23.tar.gz
+wget -c https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.24/bin/apache-tomcat-10.1.24.tar.gz
 mkdir -p /opt/tomcat
-tar xf apache-tomcat-10.1.23.tar.gz -C /opt/tomcat
-ln -s /opt/tomcat/apache-tomcat-10.1.23 /opt/tomcat/updated
+tar xf apache-tomcat-10.1.24.tar.gz -C /opt/tomcat
+ln -s /opt/tomcat/apache-tomcat-10.1.24 /opt/tomcat/updated
 chmod +x /opt/tomcat/updated/bin/*.sh
 
 # installs NVM (Node Version Manager)
