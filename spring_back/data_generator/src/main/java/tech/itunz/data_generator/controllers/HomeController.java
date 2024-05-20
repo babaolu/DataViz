@@ -21,7 +21,7 @@ public class HomeController {
      * @param data FormulaData containing the needed information
      * @return Jsonified string of array of input-output pairs
      */
-    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.HEAD, RequestMethod.OPTIONS}, originPatterns = "http://*:3000")
+    @CrossOrigin(methods = {RequestMethod.POST, RequestMethod.HEAD, RequestMethod.OPTIONS}, originPatterns = "*")
     @ResponseBody
     @PostMapping(path = "gen_pdata")
     public String generate(@RequestBody FormulaData data)
