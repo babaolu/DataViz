@@ -1,4 +1,4 @@
-#Data Vizualization project
+# Data Vizualization project
 The aim of this project is to create a website where anyone can view their data graphically, and compare how your different variables relate to each other
 
 Running Docker Image
